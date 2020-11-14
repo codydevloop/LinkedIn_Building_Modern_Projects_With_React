@@ -30,12 +30,9 @@ export const todos = (state = [], action) => {
 
     switch (type) {
         case CREATE_TODO: {
-            const { text } = payload;
-            const newTodo = {
-                text,
-                isCompleted: false,
-            };
-            return state.concat(newTodo);  //concat does not mutate array
+            const { todo } = payload;
+            // console.log(payload);
+            return state.concat(todo);  //concat does not mutate array
         }
 
         case REMOVE_TODO: {
@@ -53,8 +50,13 @@ export const todos = (state = [], action) => {
 
             });
         }
+        case LOAD_TODOS_SUCCESS: {
+            const {todos} = payload;
+            return todos;
+        }
 
-
+        case LOAD_TODOS_IN_PROGRESS: 
+        case LOAD_TODOS_FAILURE: 
         default:
             return state;
 
